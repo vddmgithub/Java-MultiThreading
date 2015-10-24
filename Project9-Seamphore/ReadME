@@ -1,0 +1,9 @@
+Aumsairam
+
+Semaphores can eb thought of as number of available permits.
+Wait and Notify has to be done by same thread.
+But Semaphore can be acquired by any thread and can be released by any number of threads.
+
+Semaphore semaphore = new Semaphore(10,true);  
+//true is for fairness which ever thread calls acquire first will get it. 
+If this paraameter is set to false then fairness is not guaranteed.
