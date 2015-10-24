@@ -1,0 +1,10 @@
+Aumsairam
+
+Without Volatile this code may not work well on all systems.
+Becoz for sake of achieving optimization there could be two copies of same variable.
+So it may never get reflected with same value in both the threads.
+
+So we need to have a volatile qualifier inorder to ensure each thread will have the updated value in the 
+variable.
+So this code works perfectly on all systems.
+
