@@ -1,0 +1,8 @@
+Aumsairam
+
+Callable and Future can be used to return something from a thread.
+Also to throw some exception.
+
+Callable takes in parameter which it returns.
+
+Return value from the call method can be obtained using future.
