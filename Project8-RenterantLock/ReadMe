@@ -1,0 +1,55 @@
+Aumsairam
+
+ReEntrant Lock has advantages over Wait and Notify
+
+boolean tryLock()Attempts to acquire the lock. 
+This method will not wait if the lock is unavailable. 
+Instead, it returns true if the lock has been acquired and false 
+if the lock is currently in use by another thread.
+
+There are several benefits to these, for a start allowing additional semantics such as fairness policies,
+as well as features such as distributed locking. 
+
+The support for multiple Condition objects allows for much finer-grained 
+signalling as well as uninterruptible waiting and waiting until some time etc.
+
+java.util.concurrent.locks.
+==========================
+ A lock is a thread synchronization mechanism like synchronized blocks except locks 
+ can be more sophisticated than Java’s synchronized blocks. 
+ 
+ It is an interfaces and classes providing a framework for locking and waiting for conditions 
+ that is distinct from built-in synchronization and monitors.
+ 
+ The constructor for this class accepts an optional fairness parameter. 
+ When set true, under contention, locks favor granting access to the longest-waiting thread.
+ 
+ Also note that the untimed tryLock method does not honor the fairness setting. 
+ It will succeed if the lock is available even if other threads are waiting.
+ 
+ In addition to implementing the Lock interface, 
+ this class defines methods isLocked and getLockQueueLength, 
+ as well as some associated protected access methods that may be useful for instrumentation and monitoring.
+ 
+ This lock supports a maximum of 2147483647 recursive locks by the same thread.
+ Attempts to exceed this limit result in Error throws from locking methods.
+ 
+  Lock replaces the use of synchronized methods and statements, 
+  a Condition replaces the use of the Object monitor methods.
+  
+wait(), notify() are directly related to the one and only intrinsic lock of an instance 
+whereas the methods in Condition can be used in combination with multiple locks. 
+This allows you to use the functionality of wait and notify with multiple wait sets.
+   
+The case of multiple condition vars with one lock is more common 
+(if fact, the Lock/Condition class doesn't allow the Condition class to be used with more than one Lock). 
+
+Classic case is having a lock on a queue, with two different condition vars 
+-- one for when the queue is empty, waiting for data, and one for when the queue is full, waiting for room.
+
+
+Condition interface comes with Two extra methods that are:
+
+1)boolean awaitUntil(Date deadline)throws InterruptedException : Causes the current thread to wait until it is signalled or interrupted, or the specified deadline elapses.
+
+2)awaitUninterruptibly() : Causes the current thread to wait until it is signalled.   
