@@ -1,0 +1,22 @@
+Aumsairam
+
+Here we have two threads who are trying yo increment the same variable.
+Without JOIN
+============
+The result could be 0 at times becoz by the time these threads run the main thread could complete its execution 
+leaving behind this 0.
+
+If we were to have couple of thread joins...
+Then the main thread waits till the other threads finishes off.
+
+WAIT TOO FAILS
+==============
+Even though we may wait, the results will not guarantee correctness.
+The issue is becoz of inherent nature of in the operation not being ATOMIC.
+
+count++ ---> READ Count, Increment by 1, Store is back.
+So this leads to INTERLEAVING OF THREADS.
+
+VOLATILE too wont solve this issue.
+
+So we should go with Synchronization.
